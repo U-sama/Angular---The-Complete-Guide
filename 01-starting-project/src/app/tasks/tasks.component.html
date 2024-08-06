@@ -1,0 +1,15 @@
+<section>
+    <header>
+        <menu>
+            <button>Add Task</button>
+        </menu>
+    </header>
+    <ul>
+        @for (task of selectedUserTasks; track task.id) {
+    
+        <li>
+            <app-task [task]="task"/>
+        </li>
+        }
+    </ul>
+</section>
