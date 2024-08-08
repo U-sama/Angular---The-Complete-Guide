@@ -28,7 +28,7 @@ export class AvailablePlacesComponent implements OnInit {
     .pipe(map((resData) => resData.places),
     catchError((error) => {
       console.log(error);
-      return throwError(()=> new Error("Something went wrong..., Please try again later another time"));
+      return throwError(()=> new Error("Something went wrong..., Please try again later."));
     }))
     .subscribe({
       next: (places) => {
@@ -45,6 +45,16 @@ export class AvailablePlacesComponent implements OnInit {
 
     this.destroyRef.onDestroy(()=>{
       subscription.unsubscribe();
+    });
+  }
+
+  onSelectPlace(selectedPlace: Place){
+    this.httpClient.put("http://localhost:3000/user-places",{
+      placeId: selectedPlace.id
+    }).subscribe({
+      next: (resData) => {
+        console.log(resData);
+      }
     });
   }
 }
