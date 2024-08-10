@@ -16,6 +16,7 @@ import { TASK_STATUS_OPTIONS, TasksStatusOptions, taskStatusOptionsProvider } fr
 export class TasksListComponent {
   private tasksService = inject(taskServiceToken);
   selectedFilter = signal<string>('all');
+  taskStatusOptions = inject(TASK_STATUS_OPTIONS)
   tasks = computed(() => {
     switch(this.selectedFilter()){
       case 'open':
